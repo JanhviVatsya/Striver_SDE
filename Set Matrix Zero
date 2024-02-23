@@ -1,0 +1,47 @@
+Hint:
+Brute: Pura khojo kahan change krna hai mark kro phir change karo TC= O(n^3)
+Better: Do alag vector bna lo row aur col mark krte jao ki kis kis row aur col mein element zero hai, change kr do TC=O(n^2) SC=O(n+m)
+Optimal: Row aur Col vector lene ki zarurat nhi, 0th row aur 0th col ko hi use kr lo same purpose ke liye
+aur common element arr[0][0] row ke liye man lo ya col ke liye aur ek alag variable lelo col0=1
+mark karo, change karo array ke andar elements uske baad forst row aur first col ke elements change kr do
+
+//revision required
+ 
+ 
+ void setZeroes(vector<vector<int>>& matrix) {
+        int col0=1;
+        //marking
+        for(int i=0; i<matrix.size(); i++){
+            for(int j=0; j<matrix[0].size(); j++){
+                if(matrix[i][j]==0){
+                    matrix[i][0]=0;
+                    if(j!=0){
+                        matrix[0][j]=0;
+                    }
+                    else col0=0;
+                }
+            }
+        }
+        //changing
+        for(int i=1; i<matrix.size(); i++){
+            for(int j=1; j<matrix[0].size(); j++){
+                if(matrix[i][j]!=0){
+                    if(matrix[0][j]==0 || matrix[i][0]==0){
+                        matrix[i][j]=0;
+                    }
+                }
+            }
+        }
+        //changing first row
+        if(matrix[0][0]==0){
+            for(int i=0; i<matrix[0].size(); i++){
+                matrix[0][i]=0;
+            }
+        }
+        //changing first col
+        if(col0==0){
+            for(int i=0; i<matrix.size(); i++){
+                matrix[i][0]=0;
+            }
+        }
+    }
