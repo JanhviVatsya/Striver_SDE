@@ -22,7 +22,7 @@ void sortColors(vector<int>& nums) {
         return;
 
 
-My solution TC= O(n)
+My solution TC= O(2n)
 void sortColors(vector<int>& nums) {
         int count0=0, count1=0, count2=0;
         for(int i=0; i<nums.size(); i++){
