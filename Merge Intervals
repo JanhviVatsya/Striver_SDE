@@ -1,0 +1,21 @@
+HINT: ek temp array bna lo jismein previous ans ko store krenge
+agar matrix[i][0] <= temp[1] hai to merge krenge
+merge krne ke liye temp[1]=max(temp[1], matrix[i][1]);
+else ans.push_back(temp); temp=matrix[i];
+
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>> ans;
+        sort(intervals.begin(), intervals.end());
+        vector<int> temp= intervals[0];
+        for(auto it: intervals){
+            if(it[0]<=temp[1]){
+                temp[1]=max(temp[1], it[1]);
+            }
+            else{
+                ans.push_back(temp);
+                temp=it;
+            }
+        }
+        ans.push_back(temp);
+        return ans;
+    }
