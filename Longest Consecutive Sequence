@@ -1,0 +1,19 @@
+int longestConsecutive(vector<int>& nums) {
+        int tillnow=0, mx=0;
+        unordered_set<int>st;
+        for(int i=0; i<nums.size(); i++){
+            st.insert(nums[i]);
+        }
+        for(auto it: st){
+            if(st.find(it-1)==st.end()){
+                int t=it;
+                tillnow=1;
+                while(st.find(t+1)!=st.end()){
+                    t=t+1;
+                    tillnow++;
+                }
+                mx=max(mx,tillnow);
+            }
+        }
+        return mx;
+    }
