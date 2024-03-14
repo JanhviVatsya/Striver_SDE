@@ -1,0 +1,21 @@
+//brute force: Maintain a hash map that checks if this node has been visited or not.
+TC: 0(N) assuming N is length of linked list A + length of linked list B.
+SC: O(A) assuming A is length of linkedlist A
+
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode* ans=NULL;
+        unordered_map<ListNode*,int>mp;
+        ListNode* tempA=headA, *tempB=headB;
+        while(tempA){
+            mp[tempA]++;
+            tempA=tempA->next;
+        }
+        while(tempB){
+            if(mp.find(tempB)!=mp.end()){
+                ans=tempB;
+                break;
+            }
+            else tempB=tempB->next;
+        }
+        return ans;
+    }
